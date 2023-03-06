@@ -1,0 +1,57 @@
+prefix: "&b[&6Antasia&b]"
+config_reloaded: "&aConfig reloaded !"
+
+help_troll:
+  ReplaceBlock: "Replaces the block set by the player with a random block"
+  NoPlace: "Prevents the player from placing blocks"
+  NoBreak: "Prevents the player from breaking blocks"
+  RandomChat: "When the player speaks a random message will be sent"
+  ForceChat: "Force the player to send a message"
+  InstantDeath: "Kills the player at the slightest damage suffered"
+  Spam: "Spam the player with sounds, effects and messages for a given time"
+  Rocket: "Sends the player into the air at a given power"
+  Turn: "Rotates the player to a certain degree"
+  Explode: "Makes an explosion at the level of the player who does not destroy the field"
+  Burn: "Makes the player burn for a given time"
+  Zeus: "Swings a lightning bolt at the player"
+  LavaBlock: "Transforms the block laid by the player into lava"
+  Mob: "Makes appear a mob chosen overpowered on the player"
+
+option_help:
+  message: "message to send"
+  time: "time(s/m/h)"
+  power: "power"
+  degree: "rotation degree"
+  creature: "mob type"
+
+misc_message:
+  no_permission: "&cYou don't have permission to do this"
+  player_not_specified: "You must specify a player"
+  player_not_found: "Player not found"
+  player_burned_for: "The player %player% is burning for %time%"
+  player_fake_explosion: "The player %player% recieved a fake explosion"
+  player_rotated: "The player %player% is rotated to %degree% degrees"
+  player_spam_effect: "The player %player% is spammed with effects for %time%"
+  troll_not_specified: "You must specify a troll"
+  troll_not_found: "The troll %troll% was not found"
+  troll_enabled: "The troll %troll% has been enabled for %player%"
+  troll_disabled: "The troll %troll% has been disable for %player%"
+  not_integer: "You must specify a number"
+  int_invalid: "You must specify a number between %min% and %max%"
+  lightning_launched: "A lightning bolt has been launched at %player%"
+  invalid_time: "You must specify a valid time (Example : <10s/m/h>)"
+  player_launched_in_the_sky: "The player %player% has been launched in the sky with a power of %power%"
+  player_instadeath: "The player %player% will die at his next damage"
+  instadeath_death_message: "The player %player% died because of a troll"
+  forcechat:
+    not_specified: "You must specify a message"
+    sent: "The player %player% has been forced to send the message %message%"
+  mob:
+    mob_not_specified: "You must specify a mob"
+    mob_not_found: "Mob not found"
+    mob_sent: "The mob %mob% has been sent to %player%"
+
+time:
+  seconds: "second(s)"
+  minutes: "minute(s)"
+  hours: "hour(s)"

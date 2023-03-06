@@ -1,0 +1,12 @@
+name: AntaTroll
+version: '${project.version}'
+main: fr.antasia.naos.troll.Main
+api-version: 1.18
+authors: [ NaosV1 ]
+description: Troll your friend
+website: https://antasia.fr
+commands:
+  troll:
+    description: Main command of the plugin
+    permission: antatroll.use
+    aliases: [ antatroll ]
