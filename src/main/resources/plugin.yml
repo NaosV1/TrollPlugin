@@ -1,7 +1,7 @@
 name: AntaTroll
 version: '${project.version}'
 main: fr.antasia.naos.troll.Main
-api-version: 1.18
+api-version: 1.16
 authors: [ NaosV1 ]
 description: Troll your friend
 website: https://antasia.fr
