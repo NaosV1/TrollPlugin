@@ -280,11 +280,11 @@ public class trollCommand implements CommandExecutor {
                                                  if (time > 0) {
                                                      player.addPotionEffect(new PotionEffect(PotionEffectType.CONFUSION, 20 * time, 5));
                                                      player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 20 * time, 5));
-                                                     String timestamp = Main.getInstance().getConfig().getString("time.minutes");
+                                                     String timestamp = Main.getInstance().getConfig().getString("time.seconds");
                                                      String player_spam_effect = Main.getInstance().getConfig().getString("misc_message.player_spam_effect");
                                                      player_spam_effect = ChatColor.translateAlternateColorCodes('&', player_spam_effect);
                                                      player_spam_effect = player_spam_effect.replace("%player%", player.getName());
-                                                     player_spam_effect = player_spam_effect.replace("%time%", args[2] + " " + timestamp);
+                                                     player_spam_effect = player_spam_effect.replace("%time%", time + " " + timestamp);
                                                      sender.sendMessage(prefix + player_spam_effect);
                                                      Bukkit.getScheduler().runTaskAsynchronously(Main.getInstance(), new Runnable() {
                                                          @Override
@@ -326,7 +326,7 @@ public class trollCommand implements CommandExecutor {
                                                      String player_spam_effect = Main.getInstance().getConfig().getString("misc_message.player_spam_effect");
                                                      player_spam_effect = ChatColor.translateAlternateColorCodes('&', player_spam_effect);
                                                      player_spam_effect = player_spam_effect.replace("%player%", player.getName());
-                                                     player_spam_effect = player_spam_effect.replace("%time%", args[2] + " " + timestamp);
+                                                     player_spam_effect = player_spam_effect.replace("%time%", time + " " + timestamp);
                                                      sender.sendMessage(prefix + player_spam_effect);
                                                      Bukkit.getScheduler().runTaskAsynchronously(Main.getInstance(), new Runnable() {
                                                          @Override
@@ -369,7 +369,7 @@ public class trollCommand implements CommandExecutor {
                                                      String player_spam_effect = Main.getInstance().getConfig().getString("misc_message.player_spam_effect");
                                                      player_spam_effect = ChatColor.translateAlternateColorCodes('&', player_spam_effect);
                                                      player_spam_effect = player_spam_effect.replace("%player%", player.getName());
-                                                     player_spam_effect = player_spam_effect.replace("%time%", args[2] + " " + timestamp);
+                                                     player_spam_effect = player_spam_effect.replace("%time%", time + " " + timestamp);
                                                      sender.sendMessage(prefix + player_spam_effect);
                                                      Bukkit.getScheduler().runTaskAsynchronously(Main.getInstance(), new Runnable() {
                                                          @Override
@@ -460,29 +460,29 @@ public class trollCommand implements CommandExecutor {
                                              if (args[2].contains("s")) {
                                                  int time = Integer.parseInt(message);
                                                  player.setFireTicks(20*time);
-                                                 String timestamp = Main.getInstance().getConfig().getString("timestamp.seconds");
+                                                 String timestamp = Main.getInstance().getConfig().getString("time.seconds");
                                                  String player_burned_for = Main.getInstance().getConfig().getString("misc_message.player_burned_for");
                                                  player_burned_for = ChatColor.translateAlternateColorCodes('&', player_burned_for);
                                                  player_burned_for = player_burned_for.replace("%player%", player.getName());
-                                                 player_burned_for = player_burned_for.replace("%time%", String.valueOf(time) + " " + timestamp);
+                                                 player_burned_for = player_burned_for.replace("%time%", time + " " + timestamp);
                                                  sender.sendMessage(prefix + player_burned_for);
                                              } else if (args[2].contains("m")) {
                                                  int time = Integer.parseInt(message);
                                                  player.setFireTicks(20*time*60);
-                                                 String timestamp = Main.getInstance().getConfig().getString("timestamp.minutes");
+                                                 String timestamp = Main.getInstance().getConfig().getString("time.minutes");
                                                  String player_burned_for = Main.getInstance().getConfig().getString("misc_message.player_burned_for");
                                                  player_burned_for = ChatColor.translateAlternateColorCodes('&', player_burned_for);
                                                  player_burned_for = player_burned_for.replace("%player%", player.getName());
-                                                 player_burned_for = player_burned_for.replace("%time%", String.valueOf(time) + " " + timestamp);
+                                                 player_burned_for = player_burned_for.replace("%time%", time + " " + timestamp);
                                                  sender.sendMessage(prefix + player_burned_for);
                                              } else if (args[2].contains("h")) {
                                                  int time = Integer.parseInt(message);
                                                  player.setFireTicks(20*time*60*60);
-                                                 String timestamp = Main.getInstance().getConfig().getString("timestamp.seconds");
+                                                 String timestamp = Main.getInstance().getConfig().getString("time.seconds");
                                                  String player_burned_for = Main.getInstance().getConfig().getString("misc_message.player_burned_for");
                                                  player_burned_for = ChatColor.translateAlternateColorCodes('&', player_burned_for);
                                                  player_burned_for = player_burned_for.replace("%player%", player.getName());
-                                                 player_burned_for = player_burned_for.replace("%time%", String.valueOf(time) + " " + timestamp);
+                                                 player_burned_for = player_burned_for.replace("%time%", time + " " + timestamp);
                                                  sender.sendMessage(prefix + player_burned_for);
                                              } else {
                                                  String valid_time = Main.getInstance().getConfig().getString("misc_message.invalid_time");
