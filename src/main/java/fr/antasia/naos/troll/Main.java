@@ -16,12 +16,12 @@ public final class Main extends JavaPlugin {
     public static String version;
     public static List<Material> sign = new ArrayList<Material>();
     public static List<Material> blocks = new ArrayList<Material>();
-    public static Map<Player, Integer> troll_replaceblock = new HashMap<Player, Integer>();
-    public static Map<Player, Integer> troll_lavablock = new HashMap<Player, Integer>();
-    public static Map<Player, Integer> troll_noplace = new HashMap<Player, Integer>();
-    public static Map<Player, Integer> troll_nobreak = new HashMap<Player, Integer>();
-    public static Map<Player, Integer> troll_randomchat = new HashMap<Player, Integer>();
-    public static Map<Player, Integer> troll_instantdead = new HashMap<Player, Integer>();
+    public static List<Player> troll_replaceblock = new ArrayList<>();
+    public static List<Player> troll_lavablock = new ArrayList<>();
+    public static List<Player> troll_noplace = new ArrayList<>();
+    public static List<Player> troll_nobreak = new ArrayList<>();
+    public static List<Player> troll_randomchat = new ArrayList<>();
+    public static List<Player> troll_instantdead = new ArrayList<>();
     public static Main instance;
     @Override
     public void onEnable() {

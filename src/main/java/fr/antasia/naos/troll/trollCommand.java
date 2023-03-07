@@ -149,45 +149,45 @@ public class trollCommand implements CommandExecutor {
 
                              if (args[1].equalsIgnoreCase("replaceblock")) {
                                  if (sender.hasPermission("antatroll.replaceblock") || sender.hasPermission("antatroll.*") || sender.isOp()) {
-                                     if (Main.troll_replaceblock.containsKey(player)) {
+                                     if (Main.troll_replaceblock.contains(player)) {
                                          Main.troll_replaceblock.remove(player);
 
                                          sender.sendMessage(prefix + message_disable);
                                      } else {
-                                         Main.troll_replaceblock.put(player, 1);
+                                         Main.troll_replaceblock.add(player);
                                          sender.sendMessage(prefix + message_enable);
                                      }
                                  }
 
                             } else if (args[1].equalsIgnoreCase("noplace")) {
                                  if (sender.hasPermission("antatroll.noplace") || sender.hasPermission("antatroll.*") || sender.isOp()) {
-                                     if (Main.troll_noplace.containsKey(player)) {
+                                     if (Main.troll_noplace.contains(player)) {
                                          Main.troll_noplace.remove(player);
                                          sender.sendMessage(prefix + message_disable);
                                      } else {
-                                         Main.troll_noplace.put(player, 1);
+                                         Main.troll_noplace.add(player);
                                          sender.sendMessage(prefix + message_enable);
                                      }
                                  }
 
                             } else if (args[1].equalsIgnoreCase("nobreak")) {
                                  if (sender.hasPermission("antatroll.nobreak") || sender.hasPermission("antatroll.*") || sender.isOp()) {
-                                     if (Main.troll_nobreak.containsKey(player)) {
+                                     if (Main.troll_nobreak.contains(player)) {
                                          Main.troll_nobreak.remove(player);
                                          sender.sendMessage(prefix + message_disable);
                                      } else {
-                                         Main.troll_nobreak.put(player, 1);
+                                         Main.troll_nobreak.add(player);
                                          sender.sendMessage(prefix + message_enable);
                                      }
                                  }
 
                             } else if (args[1].equalsIgnoreCase("randomchat")) {
                                  if (sender.hasPermission("antatroll.randomchat") || sender.hasPermission("antatroll.*") || sender.isOp()) {
-                                     if (Main.troll_randomchat.containsKey(player)) {
+                                     if (Main.troll_randomchat.contains(player)) {
                                          Main.troll_randomchat.remove(player);
                                          sender.sendMessage(prefix + message_disable);
                                      } else {
-                                         Main.troll_randomchat.put(player, 1);
+                                         Main.troll_randomchat.add(player);
                                          sender.sendMessage(prefix + message_enable);
                                      }
                                  }
@@ -199,13 +199,13 @@ public class trollCommand implements CommandExecutor {
                                              message = message + args[i] + " ";
                                          }
                                          int isrdmchat = 0;
-                                         if (Main.troll_randomchat.containsKey(player)) {
+                                         if (Main.troll_randomchat.contains(player)) {
                                              isrdmchat = 1;
                                              Main.troll_randomchat.remove(player);
                                          }
                                          player.chat(message);
                                          if (isrdmchat == 1) {
-                                             Main.troll_randomchat.put(player, 1);
+                                             Main.troll_randomchat.add(player);
                                          }
                                          String message_forcechat = Main.getInstance().getConfig().getString("misc_message.forcechat.sent");
                                          message_forcechat = ChatColor.translateAlternateColorCodes('&', message_forcechat);
@@ -225,11 +225,11 @@ public class trollCommand implements CommandExecutor {
                                  }
                             } else if (args[1].equalsIgnoreCase("instantdeath")) {
                                  if (sender.hasPermission("antatroll.instantdeath") || sender.hasPermission("antatroll.*") || sender.isOp()) {
-                                     if (Main.troll_instantdead.containsKey(player)) {
+                                     if (Main.troll_instantdead.contains(player)) {
                                          Main.troll_instantdead.remove(player);
                                          sender.sendMessage(prefix + message_disable);
                                      } else {
-                                         Main.troll_instantdead.put(player, 1);
+                                         Main.troll_instantdead.add(player);
                                          String player_instadeath = Main.getInstance().getConfig().getString("misc_message.player_instadeath");
                                          player_instadeath = ChatColor.translateAlternateColorCodes('&', player_instadeath);
                                          player_instadeath = player_instadeath.replace("%player%", player.getName());
@@ -544,11 +544,11 @@ public class trollCommand implements CommandExecutor {
                                  }
                              } else if (args[1].equalsIgnoreCase("lavablock")) {
                                  if (sender.hasPermission("antatroll.lavablock") || sender.hasPermission("antatroll.*") || sender.isOp()) {
-                                     if (Main.troll_lavablock.containsKey(player)) {
+                                     if (Main.troll_lavablock.contains(player)) {
                                          Main.troll_lavablock.remove(player);
                                          sender.sendMessage(prefix + message_disable);
                                      } else {
-                                         Main.troll_lavablock.put(player, 1);
+                                         Main.troll_lavablock.add(player);
                                          sender.sendMessage(prefix + message_enable);
                                      }
                                  }

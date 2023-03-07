@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="TrollPlugin-main:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/TrollPlugin_main_jar</output-path>
+    <root id="archive" name="TrollPlugin-main.jar">
+      <element id="module-output" name="TrollPlugin-main" />
+    </root>
+  </artifact>
+</component>
