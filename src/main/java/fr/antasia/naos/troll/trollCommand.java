@@ -10,9 +10,7 @@ import org.bukkit.attribute.Attribute;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Player;
-import org.bukkit.entity.Zombie;
+import org.bukkit.entity.*;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -512,25 +510,140 @@ public class trollCommand implements CommandExecutor {
                                  if (sender.hasPermission("antatroll.mob") || sender.hasPermission("antatroll.*") || sender.isOp()) {
                                      if (args.length >= 3) {
                                          if (args[2].equalsIgnoreCase("zombie")) {
-                                            Zombie zombie = (Zombie) player.getWorld().spawnEntity(player.getLocation(), EntityType.ZOMBIE);
-                                            zombie.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(500);
-                                            zombie.getAttribute(Attribute.GENERIC_KNOCKBACK_RESISTANCE).setBaseValue(10);
-                                            zombie.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).setBaseValue(10);
-                                            PotionEffect fast_dig = new PotionEffect(PotionEffectType.WATER_BREATHING,999999999,100, true, false);
-                                            fast_dig.apply(zombie);
-                                            zombie.setHealth(500);
-                                            zombie.setCanPickupItems(false);
-                                            zombie.setTarget(player);
 
 
-                                            String mob_sent = Main.getInstance().getConfig().getString("misc_message.mob.mob_sent");
+                                             Location loc = player.getLocation();
+                                             int x = loc.getBlockX();
+                                             int y = loc.getBlockY();
+                                             int z = loc.getBlockZ();
+                                             int radius = 10;
+                                             int x1 = x + (int) (Math.random() * radius * 2) - radius;
+                                             int z1 = z + (int) (Math.random() * radius * 2) - radius;
+                                             int y1 = y + (int) (Math.random() * radius * 2) - radius;
+                                             Location loc1 = new Location(loc.getWorld(), x1, y1, z1);
+
+                                             Zombie zombie = (Zombie) player.getWorld().spawnEntity(loc1, EntityType.ZOMBIE);
+                                                zombie.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(500);
+                                                zombie.getAttribute(Attribute.GENERIC_KNOCKBACK_RESISTANCE).setBaseValue(10);
+                                                zombie.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).setBaseValue(10);
+                                                zombie.setHealth(500);
+                                                zombie.setCanPickupItems(false);
+                                                zombie.setTarget(player);
+
+
+                                             String mob_sent = Main.getInstance().getConfig().getString("misc_message.mob.mob_sent");
                                             mob_sent = ChatColor.translateAlternateColorCodes('&', mob_sent);
                                             mob_sent = mob_sent.replace("%player%", player.getName());
                                             mob_sent = mob_sent.replace("%mob%", args[2]);
 
                                             sender.sendMessage(prefix + mob_sent);
 
-                                         } else{
+                                         } else if (args[2].equalsIgnoreCase("spider")) {
+                                             Location loc = player.getLocation();
+                                             int x = loc.getBlockX();
+                                             int y = loc.getBlockY();
+                                             int z = loc.getBlockZ();
+                                             int radius = 10;
+                                             int x1 = x + (int) (Math.random() * radius * 2) - radius;
+                                             int z1 = z + (int) (Math.random() * radius * 2) - radius;
+                                             int y1 = y + (int) (Math.random() * radius * 2) - radius;
+                                             Location loc1 = new Location(loc.getWorld(), x1, y1, z1);
+
+                                             Spider spider = (Spider) player.getWorld().spawnEntity(loc1, EntityType.SPIDER);
+                                             spider.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(500);
+                                             spider.getAttribute(Attribute.GENERIC_KNOCKBACK_RESISTANCE).setBaseValue(10);
+                                             spider.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).setBaseValue(10);
+                                             spider.setHealth(500);
+                                             spider.setCanPickupItems(false);
+                                             spider.setTarget(player);
+                                         } else if (args[2].equalsIgnoreCase("creeper")) {
+
+
+                                             Location loc = player.getLocation();
+                                             int x = loc.getBlockX();
+                                             int y = loc.getBlockY();
+                                             int z = loc.getBlockZ();
+                                             int radius = 10;
+                                             int x1 = x + (int) (Math.random() * radius * 2) - radius;
+                                             int z1 = z + (int) (Math.random() * radius * 2) - radius;
+                                             int y1 = y + (int) (Math.random() * radius * 2) - radius;
+                                             Location loc1 = new Location(loc.getWorld(), x1, y1, z1);
+                                             Creeper creeper = (Creeper) player.getWorld().spawnEntity(loc1, EntityType.CREEPER);
+                                             creeper.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(500);
+                                             creeper.getAttribute(Attribute.GENERIC_KNOCKBACK_RESISTANCE).setBaseValue(10);
+                                             creeper.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).setBaseValue(10);
+                                             creeper.setHealth(500);
+                                             creeper.setCanPickupItems(false);
+                                             creeper.setTarget(player);
+                                         } else if (args[2].equalsIgnoreCase("skeleton")) {
+                                                Location loc = player.getLocation();
+                                                int x = loc.getBlockX();
+                                                int y = loc.getBlockY();
+                                                int z = loc.getBlockZ();
+                                                int radius = 10;
+                                                int x1 = x + (int) (Math.random() * radius * 2) - radius;
+                                                int z1 = z + (int) (Math.random() * radius * 2) - radius;
+                                                int y1 = y + (int) (Math.random() * radius * 2) - radius;
+                                                Location loc1 = new Location(loc.getWorld(), x1, y1, z1);
+                                                Skeleton skeleton = (Skeleton) player.getWorld().spawnEntity(loc1, EntityType.SKELETON);
+                                                skeleton.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(500);
+                                                skeleton.getAttribute(Attribute.GENERIC_KNOCKBACK_RESISTANCE).setBaseValue(10);
+                                                skeleton.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).setBaseValue(10);
+                                                skeleton.setHealth(500);
+                                                skeleton.setCanPickupItems(false);
+                                                skeleton.setTarget(player);
+                                         } else if (args[2].equalsIgnoreCase("enderman")) {
+                                                Location loc = player.getLocation();
+                                                int x = loc.getBlockX();
+                                                int y = loc.getBlockY();
+                                                int z = loc.getBlockZ();
+                                                int radius = 10;
+                                                int x1 = x + (int) (Math.random() * radius * 2) - radius;
+                                                int z1 = z + (int) (Math.random() * radius * 2) - radius;
+                                                int y1 = y + (int) (Math.random() * radius * 2) - radius;
+                                                Location loc1 = new Location(loc.getWorld(), x1, y1, z1);
+                                                Enderman enderman = (Enderman) player.getWorld().spawnEntity(loc1, EntityType.ENDERMAN);
+                                                enderman.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(500);
+                                                enderman.getAttribute(Attribute.GENERIC_KNOCKBACK_RESISTANCE).setBaseValue(10);
+                                                enderman.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).setBaseValue(10);
+                                                enderman.setHealth(500);
+                                                enderman.setCanPickupItems(false);
+                                                enderman.setTarget(player);
+                                         } else if (args[2].equalsIgnoreCase("witch")) {
+                                                Location loc = player.getLocation();
+                                                int x = loc.getBlockX();
+                                                int y = loc.getBlockY();
+                                                int z = loc.getBlockZ();
+                                                int radius = 10;
+                                                int x1 = x + (int) (Math.random() * radius * 2) - radius;
+                                                int z1 = z + (int) (Math.random() * radius * 2) - radius;
+                                                int y1 = y + (int) (Math.random() * radius * 2) - radius;
+                                                Location loc1 = new Location(loc.getWorld(), x1, y1, z1);
+                                                Witch witch = (Witch) player.getWorld().spawnEntity(loc1, EntityType.WITCH);
+                                                witch.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(500);
+                                                witch.getAttribute(Attribute.GENERIC_KNOCKBACK_RESISTANCE).setBaseValue(10);
+                                                witch.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).setBaseValue(10);
+                                                witch.setHealth(500);
+                                                witch.setCanPickupItems(false);
+                                                witch.setTarget(player);
+                                         } else if (args[2].equalsIgnoreCase("slime")) {
+                                                Location loc = player.getLocation();
+                                                int x = loc.getBlockX();
+                                                int y = loc.getBlockY();
+                                                int z = loc.getBlockZ();
+                                                int radius = 10;
+                                                int x1 = x + (int) (Math.random() * radius * 2) - radius;
+                                                int z1 = z + (int) (Math.random() * radius * 2) - radius;
+                                                int y1 = y + (int) (Math.random() * radius * 2) - radius;
+                                                Location loc1 = new Location(loc.getWorld(), x1, y1, z1);
+                                                Slime slime = (Slime) player.getWorld().spawnEntity(loc1, EntityType.SLIME);
+                                                slime.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(500);
+                                                slime.getAttribute(Attribute.GENERIC_KNOCKBACK_RESISTANCE).setBaseValue(10);
+                                                slime.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).setBaseValue(10);
+                                                slime.setHealth(500);
+                                                slime.setCanPickupItems(false);
+                                                slime.setTarget(player);
+                                         } else {
                                              String invalid_mob = Main.getInstance().getConfig().getString("misc_message.mob.mob_not_found");
                                              invalid_mob = ChatColor.translateAlternateColorCodes('&', invalid_mob);
                                              sender.sendMessage(prefix + invalid_mob);

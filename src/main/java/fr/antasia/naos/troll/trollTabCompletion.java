@@ -63,6 +63,12 @@ public class trollTabCompletion implements TabCompleter {
                 }
             } else if (args[1].equalsIgnoreCase("mob")) {
                 list.add("Zombie");
+                list.add("spider");
+                list.add("creeper");
+                list.add("skeleton");
+                list.add("witch");
+                list.add("enderman");
+                list.add("slime");
             }
             return list;
         }
