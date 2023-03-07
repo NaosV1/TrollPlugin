@@ -1,13 +1,13 @@
 <h1 align="center">AntaTroll</h1>
 
-#Command :
+# 🤖 Command :
 
 /troll [Player] [Troll] <Option>
 - [] = Obligated
 - <> = Faculative (Depend on the troll)
 - Permission : antatroll.use
 
-# Trolls List :
+# 🤣 Trolls List :
 ReplaceBlock =>
 Replaces the block set by the player with a random block {antatroll.replaceblock}
 
