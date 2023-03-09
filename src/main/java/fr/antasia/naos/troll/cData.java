@@ -23,7 +23,10 @@ public class cData {
         public static String power_option = Main.getInstance().getConfig().getString("option_help.power");
         public static String degree_option = Main.getInstance().getConfig().getString("option_help.degree");
         public static String creature_option = Main.getInstance().getConfig().getString("option_help.creature");
-    public void load() {
+
+        public static String prefix = Main.getInstance().getConfig().getString("prefix");
+    public static void load() {
+        prefix = ChatColor.translateAlternateColorCodes('&', prefix);
         ReplaceBlock = ChatColor.translateAlternateColorCodes('&', ReplaceBlock);
         InstantDeath = ChatColor.translateAlternateColorCodes('&', InstantDeath);
         NoPlace = ChatColor.translateAlternateColorCodes('&', NoPlace);

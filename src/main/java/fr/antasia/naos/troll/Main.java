@@ -31,7 +31,8 @@ public final class Main extends JavaPlugin {
         pm.registerEvents(new trollListener(), this);
         getCommand("troll").setExecutor((CommandExecutor) new trollCommand());
         getCommand("troll").setTabCompleter((TabCompleter) new trollTabCompletion());
-        int pluginId = 17886; // <-- Replace with the id of your plugin!
+        int pluginId = 17886;
+        cData.load();
         Metrics metrics = new Metrics(this, pluginId);
         for (Material block : Material.values()) {
             if (block.isBlock()) {

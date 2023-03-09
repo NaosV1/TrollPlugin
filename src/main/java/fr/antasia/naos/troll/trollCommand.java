@@ -16,11 +16,11 @@ import org.bukkit.potion.PotionEffectType;
 
 import java.util.Random;
 
+import static fr.antasia.naos.troll.cData.prefix;
+
 public class trollCommand implements CommandExecutor {
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        String prefix = Main.getInstance().getConfig().getString("prefix");
-        prefix = ChatColor.translateAlternateColorCodes('&', prefix);
         if (command.getName().equalsIgnoreCase("troll") || command.getName().equalsIgnoreCase("antatroll")) {
             if (args.length == 0) {
                 sender.sendMessage(prefix + " §cTrolls :");
