@@ -12,8 +12,8 @@ public class trollTabCompletion implements TabCompleter {
 
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
+        List<String> troll_list = new ArrayList<>();
         if (args.length == 2) {
-            List<String> troll_list = new ArrayList<String>();
             troll_list.add("replaceblock");
             troll_list.add("noplace");
             troll_list.add("nobreak");
@@ -30,48 +30,46 @@ public class trollTabCompletion implements TabCompleter {
             troll_list.add("mob");
             return troll_list;
         } else if (args.length == 3) {
-            List<String> list = new ArrayList<String>();
             if (args[1].equalsIgnoreCase("spam") || args[1].equalsIgnoreCase("burn")) {
-                list.add("10s");
-                list.add("20s");
-                list.add("30s");
-                list.add("40s");
-                list.add("50s");
-                list.add("1m");
-                list.add("5m");
-                list.add("10m");
-                list.add("15m");
-                list.add("20m");
-                list.add("25m");
-                list.add("30m");
-                list.add("1h");
-                list.add("2h");
-                list.add("3h");
-                list.add("4h");
-                list.add("5h");
+                troll_list.add("10s");
+                troll_list.add("20s");
+                troll_list.add("30s");
+                troll_list.add("40s");
+                troll_list.add("50s");
+                troll_list.add("1m");
+                troll_list.add("5m");
+                troll_list.add("10m");
+                troll_list.add("15m");
+                troll_list.add("20m");
+                troll_list.add("25m");
+                troll_list.add("30m");
+                troll_list.add("1h");
+                troll_list.add("2h");
+                troll_list.add("3h");
+                troll_list.add("4h");
+                troll_list.add("5h");
             } else if (args[1].equalsIgnoreCase("turn")) {
-                list.add("10");
-                list.add("20");
-                list.add("40");
-                list.add("90");
-                list.add("180");
-                list.add("360");
+                troll_list.add("10");
+                troll_list.add("20");
+                troll_list.add("40");
+                troll_list.add("90");
+                troll_list.add("180");
+                troll_list.add("360");
 
             } else if (args[1].equalsIgnoreCase("rocket")) {
                 for (int i = 1; i <= 20; i++) {
-                    list.add(String.valueOf(i));
+                    troll_list.add(String.valueOf(i));
                 }
             } else if (args[1].equalsIgnoreCase("mob")) {
-                list.add("Zombie");
-                list.add("spider");
-                list.add("creeper");
-                list.add("skeleton");
-                list.add("witch");
-                list.add("enderman");
-                list.add("slime");
+                troll_list.add("Zombie");
+                troll_list.add("spider");
+                troll_list.add("creeper");
+                troll_list.add("skeleton");
+                troll_list.add("witch");
+                troll_list.add("enderman");
+                troll_list.add("slime");
             }
-            return list;
         }
-        return null;
+        return troll_list;
     }
 }

@@ -23,54 +23,6 @@ public class trollCommand implements CommandExecutor {
         prefix = ChatColor.translateAlternateColorCodes('&', prefix);
         if (command.getName().equalsIgnoreCase("troll") || command.getName().equalsIgnoreCase("antatroll")) {
             if (args.length == 0) {
-                /*
-                Troll's description
-                 */
-                String ReplaceBlock = Main.getInstance().getConfig().getString("help_troll.ReplaceBlock");
-                ReplaceBlock = ChatColor.translateAlternateColorCodes('&', ReplaceBlock);
-                String NoPlace = Main.getInstance().getConfig().getString("help_troll.NoPlace");
-                NoPlace = ChatColor.translateAlternateColorCodes('&', NoPlace);
-                String NoBreak = Main.getInstance().getConfig().getString("help_troll.NoBreak");
-                NoBreak = ChatColor.translateAlternateColorCodes('&', NoBreak);
-                String RandomChat = Main.getInstance().getConfig().getString("help_troll.RandomChat");
-                RandomChat = ChatColor.translateAlternateColorCodes('&', RandomChat);
-                String ForceChat = Main.getInstance().getConfig().getString("help_troll.ForceChat");
-                ForceChat = ChatColor.translateAlternateColorCodes('&', ForceChat);
-                String InstantDeath = Main.getInstance().getConfig().getString("help_troll.InstantDeath");
-                InstantDeath = ChatColor.translateAlternateColorCodes('&', InstantDeath);
-                String Spam = Main.getInstance().getConfig().getString("help_troll.Spam");
-                Spam = ChatColor.translateAlternateColorCodes('&', Spam);
-                String Rocket = Main.getInstance().getConfig().getString("help_troll.Rocket");
-                Rocket = ChatColor.translateAlternateColorCodes('&', Rocket);
-                String Turn = Main.getInstance().getConfig().getString("help_troll.Turn");
-                Turn = ChatColor.translateAlternateColorCodes('&', Turn);
-                String Explode = Main.getInstance().getConfig().getString("help_troll.Explode");
-                Explode = ChatColor.translateAlternateColorCodes('&', Explode);
-                String Burn = Main.getInstance().getConfig().getString("help_troll.Burn");
-                Burn = ChatColor.translateAlternateColorCodes('&', Burn);
-                String Zeus = Main.getInstance().getConfig().getString("help_troll.Zeus");
-                Zeus = ChatColor.translateAlternateColorCodes('&', Zeus);
-                String LavaBlock = Main.getInstance().getConfig().getString("help_troll.LavaBlock");
-                LavaBlock = ChatColor.translateAlternateColorCodes('&', LavaBlock);
-                String Mob = Main.getInstance().getConfig().getString("help_troll.Mob");
-                Mob = ChatColor.translateAlternateColorCodes('&', Mob);
-
-                /*
-                Option
-                 */
-                String message_option = Main.getInstance().getConfig().getString("option_help.message");
-                message_option = ChatColor.translateAlternateColorCodes('&', message_option);
-                String time_option = Main.getInstance().getConfig().getString("option_help.time");
-                time_option = ChatColor.translateAlternateColorCodes('&', time_option);
-                String power_option = Main.getInstance().getConfig().getString("option_help.power");
-                power_option = ChatColor.translateAlternateColorCodes('&', power_option);
-                String degree_option = Main.getInstance().getConfig().getString("option_help.degree");
-                degree_option = ChatColor.translateAlternateColorCodes('&', degree_option);
-                String creature_option = Main.getInstance().getConfig().getString("option_help.creature");
-                creature_option = ChatColor.translateAlternateColorCodes('&', creature_option);
-
-
-
                 sender.sendMessage(prefix + " §cTrolls :");
                 sender.sendMessage(" §c-> §r/antatroll §6[§bPlayer§6] §6[§bTroll§6] §6<§bOption§6>");
                 if (sender.hasPermission("antatroll.reload")) {
@@ -78,46 +30,46 @@ public class trollCommand implements CommandExecutor {
                 }
                 sender.sendMessage("§7 [] = Not Optional\n <> = Optional");
                 if (sender.hasPermission("antatroll.replaceblock") || sender.hasPermission("antatroll.*") || sender.isOp()) {
-                    sender.sendMessage("- §b[ReplaceBlock] §r: " + ReplaceBlock);
+                    sender.sendMessage("- §b[ReplaceBlock] §r: " + cData.ReplaceBlock);
                 }
                 if (sender.hasPermission("antatroll.noplace") || sender.hasPermission("antatroll.*") || sender.isOp()) {
-                    sender.sendMessage("- §b[NoPlace] §r: " + NoPlace);
+                    sender.sendMessage("- §b[NoPlace] §r: " + cData.NoPlace);
                 }
                 if (sender.hasPermission("antatroll.nobreak") || sender.hasPermission("antatroll.*") || sender.isOp()) {
-                    sender.sendMessage("- §b[NoBreak] §r: " + NoBreak);
+                    sender.sendMessage("- §b[NoBreak] §r: " + cData.NoBreak);
                 }
                 if (sender.hasPermission("antatroll.randomchat") || sender.hasPermission("antatroll.*") || sender.isOp()) {
-                    sender.sendMessage("- §b[RandomChat] §r: " + RandomChat);
+                    sender.sendMessage("- §b[RandomChat] §r: " + cData.RandomChat);
                 }
                 if (sender.hasPermission("antatroll.forcechat") || sender.hasPermission("antatroll.*") || sender.isOp()) {
-                    sender.sendMessage("- §b[ForceChat] §e<" + message_option + "> §r: " + ForceChat);
+                    sender.sendMessage("- §b[ForceChat] §e<" + cData.message_option + "> §r: " + cData.ForceChat);
                 }
                 if (sender.hasPermission("antatroll.instantdeath") || sender.hasPermission("antatroll.*") || sender.isOp()) {
-                    sender.sendMessage("- §b[InstantDeath] §r: " + InstantDeath);
+                    sender.sendMessage("- §b[InstantDeath] §r: " + cData.InstantDeath);
                 }
                 if (sender.hasPermission("antatroll.spam") || sender.hasPermission("antatroll.*") || sender.isOp()) {
-                    sender.sendMessage("- §b[Spam] §e<" + time_option + "> §r: " + Spam);
+                    sender.sendMessage("- §b[Spam] §e<" + cData.time_option + "> §r: " + cData.Spam);
                 }
                 if (sender.hasPermission("antatroll.rocket") || sender.hasPermission("antatroll.*") || sender.isOp()) {
-                    sender.sendMessage("- §b[Rocket] §e<" + power_option + "> §r: " + Rocket);
+                    sender.sendMessage("- §b[Rocket] §e<" + cData.power_option + "> §r: " + cData.Rocket);
                 }
                 if (sender.hasPermission("antatroll.turn") || sender.hasPermission("antatroll.*") || sender.isOp()) {
-                    sender.sendMessage("- §b[Turn] §e<" + degree_option + "> §r: " + Turn);
+                    sender.sendMessage("- §b[Turn] §e<" + cData.degree_option + "> §r: " + cData.Turn);
                 }
                 if (sender.hasPermission("antatroll.explode") || sender.hasPermission("antatroll.*") || sender.isOp()) {
-                    sender.sendMessage("- §b[Explode] §r: " + Explode);
+                    sender.sendMessage("- §b[Explode] §r: " + cData.Explode);
                 }
                 if (sender.hasPermission("antatroll.burn") || sender.hasPermission("antatroll.*") || sender.isOp()) {
-                    sender.sendMessage("- §b[Burn] §e<" + time_option + "> §r: " + Burn);
+                    sender.sendMessage("- §b[Burn] §e<" + cData.time_option + "> §r: " + cData.Burn);
                 }
                 if (sender.hasPermission("antatroll.zeus") || sender.hasPermission("antatroll.*") || sender.isOp()) {
-                    sender.sendMessage("- §b[Zeus] §r: " + Zeus);
+                    sender.sendMessage("- §b[Zeus] §r: " + cData.Zeus);
                 }
                 if (sender.hasPermission("antatroll.lavablock") || sender.hasPermission("antatroll.*") || sender.isOp()) {
-                    sender.sendMessage("- §b[LavaBlock] §r: " + LavaBlock);
+                    sender.sendMessage("- §b[LavaBlock] §r: " + cData.LavaBlock);
                 }
                 if (sender.hasPermission("antatroll.mob") || sender.hasPermission("antatroll.*") || sender.isOp()) {
-                    sender.sendMessage("- §b[Mob] §e<" + creature_option + "> §r: " + Mob);
+                    sender.sendMessage("- §b[Mob] §e<" + cData.creature_option + "> §r: " + cData.Mob);
                 }
             } else if (args.length >= 1) {
                 if (args[0].equalsIgnoreCase("reload")) {
@@ -213,12 +165,7 @@ public class trollCommand implements CommandExecutor {
                                      } else {
                                          String message_not_specified = Main.getInstance().getConfig().getString("misc_message.forcechat.not_specified");
                                          message_not_specified = ChatColor.translateAlternateColorCodes('&', message_not_specified);
-
                                          sender.sendMessage(prefix + message_not_specified);
-
-                                         /*
-                                         TODO : Continue here
-                                          */
                                      }
                                  }
                             } else if (args[1].equalsIgnoreCase("instantdeath")) {
