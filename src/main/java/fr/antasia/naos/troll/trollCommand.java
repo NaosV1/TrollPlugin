@@ -20,58 +20,31 @@ import static fr.antasia.naos.troll.cData.prefix;
 
 public class trollCommand implements CommandExecutor {
 
+    private void help(Player player) {
+        if (player == null) return;
+        player.sendMessage(prefix + " §cTrolls :");
+        player.sendMessage(" §c-> §r/antatroll §6[§bPlayer§6] §6[§bTroll§6] §6<§bOption§6>");
+        if (player.hasPermission("antatroll.reload")) player.sendMessage("§7/antatroll reload §6- §7Reload the config");
+        player.sendMessage("§7 [] = Not Optional\n <> = Optional");
+        if (player.hasPermission("antatroll.replaceblock") || player.hasPermission("antatroll.*")) player.sendMessage("- §b[ReplaceBlock] §r: " + cData.ReplaceBlock);
+        if (player.hasPermission("antatroll.noplace") || player.hasPermission("antatroll.*")) player.sendMessage("- §b[NoPlace] §r: " + cData.NoPlace);
+        if (player.hasPermission("antatroll.nobreak") || player.hasPermission("antatroll.*")) player.sendMessage("- §b[NoBreak] §r: " + cData.NoBreak);
+        if (player.hasPermission("antatroll.randomchat") || player.hasPermission("antatroll.*")) player.sendMessage("- §b[RandomChat] §r: " + cData.RandomChat);
+        if (player.hasPermission("antatroll.forcechat") || player.hasPermission("antatroll.*")) player.sendMessage("- §b[ForceChat] §e<" + cData.message_option + "> §r: " + cData.ForceChat);
+        if (player.hasPermission("antatroll.instantdeath") || player.hasPermission("antatroll.*")) player.sendMessage("- §b[InstantDeath] §r: " + cData.InstantDeath);
+        if (player.hasPermission("antatroll.spam") || player.hasPermission("antatroll.*")) player.sendMessage("- §b[Spam] §e<" + cData.time_option + "> §r: " + cData.Spam);
+        if (player.hasPermission("antatroll.rocket") || player.hasPermission("antatroll.*")) player.sendMessage("- §b[Rocket] §e<" + cData.power_option + "> §r: " + cData.Rocket);
+        if (player.hasPermission("antatroll.turn") || player.hasPermission("antatroll.*")) player.sendMessage("- §b[Turn] §e<" + cData.degree_option + "> §r: " + cData.Turn);
+        if (player.hasPermission("antatroll.explode") || player.hasPermission("antatroll.*")) player.sendMessage("- §b[Explode] §r: " + cData.Explode);
+        if (player.hasPermission("antatroll.burn") || player.hasPermission("antatroll.*")) player.sendMessage("- §b[Burn] §e<" + cData.time_option + "> §r: " + cData.Burn);
+        if (player.hasPermission("antatroll.zeus") || player.hasPermission("antatroll.*")) player.sendMessage("- §b[Zeus] §r: " + cData.Zeus);
+        if (player.hasPermission("antatroll.lavablock") || player.hasPermission("antatroll.*")) player.sendMessage("- §b[LavaBlock] §r: " + cData.LavaBlock);
+        if (player.hasPermission("antatroll.mob") || player.hasPermission("antatroll.*")) player.sendMessage("- §b[Mob] §e<" + cData.creature_option + "> §r: " + cData.Mob);
+    }
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (command.getName().equalsIgnoreCase("troll") || command.getName().equalsIgnoreCase("antatroll")) {
-            if (args.length == 0) {
-                sender.sendMessage(prefix + " §cTrolls :");
-                sender.sendMessage(" §c-> §r/antatroll §6[§bPlayer§6] §6[§bTroll§6] §6<§bOption§6>");
-                if (sender.hasPermission("antatroll.reload")) {
-                    sender.sendMessage("§7/antatroll reload §6- §7Reload the config");
-                }
-                sender.sendMessage("§7 [] = Not Optional\n <> = Optional");
-                if (sender.hasPermission("antatroll.replaceblock") || sender.hasPermission("antatroll.*") || sender.isOp()) {
-                    sender.sendMessage("- §b[ReplaceBlock] §r: " + cData.ReplaceBlock);
-                }
-                if (sender.hasPermission("antatroll.noplace") || sender.hasPermission("antatroll.*") || sender.isOp()) {
-                    sender.sendMessage("- §b[NoPlace] §r: " + cData.NoPlace);
-                }
-                if (sender.hasPermission("antatroll.nobreak") || sender.hasPermission("antatroll.*") || sender.isOp()) {
-                    sender.sendMessage("- §b[NoBreak] §r: " + cData.NoBreak);
-                }
-                if (sender.hasPermission("antatroll.randomchat") || sender.hasPermission("antatroll.*") || sender.isOp()) {
-                    sender.sendMessage("- §b[RandomChat] §r: " + cData.RandomChat);
-                }
-                if (sender.hasPermission("antatroll.forcechat") || sender.hasPermission("antatroll.*") || sender.isOp()) {
-                    sender.sendMessage("- §b[ForceChat] §e<" + cData.message_option + "> §r: " + cData.ForceChat);
-                }
-                if (sender.hasPermission("antatroll.instantdeath") || sender.hasPermission("antatroll.*") || sender.isOp()) {
-                    sender.sendMessage("- §b[InstantDeath] §r: " + cData.InstantDeath);
-                }
-                if (sender.hasPermission("antatroll.spam") || sender.hasPermission("antatroll.*") || sender.isOp()) {
-                    sender.sendMessage("- §b[Spam] §e<" + cData.time_option + "> §r: " + cData.Spam);
-                }
-                if (sender.hasPermission("antatroll.rocket") || sender.hasPermission("antatroll.*") || sender.isOp()) {
-                    sender.sendMessage("- §b[Rocket] §e<" + cData.power_option + "> §r: " + cData.Rocket);
-                }
-                if (sender.hasPermission("antatroll.turn") || sender.hasPermission("antatroll.*") || sender.isOp()) {
-                    sender.sendMessage("- §b[Turn] §e<" + cData.degree_option + "> §r: " + cData.Turn);
-                }
-                if (sender.hasPermission("antatroll.explode") || sender.hasPermission("antatroll.*") || sender.isOp()) {
-                    sender.sendMessage("- §b[Explode] §r: " + cData.Explode);
-                }
-                if (sender.hasPermission("antatroll.burn") || sender.hasPermission("antatroll.*") || sender.isOp()) {
-                    sender.sendMessage("- §b[Burn] §e<" + cData.time_option + "> §r: " + cData.Burn);
-                }
-                if (sender.hasPermission("antatroll.zeus") || sender.hasPermission("antatroll.*") || sender.isOp()) {
-                    sender.sendMessage("- §b[Zeus] §r: " + cData.Zeus);
-                }
-                if (sender.hasPermission("antatroll.lavablock") || sender.hasPermission("antatroll.*") || sender.isOp()) {
-                    sender.sendMessage("- §b[LavaBlock] §r: " + cData.LavaBlock);
-                }
-                if (sender.hasPermission("antatroll.mob") || sender.hasPermission("antatroll.*") || sender.isOp()) {
-                    sender.sendMessage("- §b[Mob] §e<" + cData.creature_option + "> §r: " + cData.Mob);
-                }
-            } else if (args.length >= 1) {
+            if (args.length == 0) help(sender instanceof Player ? (Player) sender : null);
+            else {
                 if (args[0].equalsIgnoreCase("reload")) {
                     if (sender.hasPermission("antatroll.reload")) {
                         Main.getInstance().reloadConfig();
@@ -629,10 +602,6 @@ public class trollCommand implements CommandExecutor {
                         sender.sendMessage(prefix + player_not_found);
                     }
                 }
-            } else {
-                String player_not_specified = Main.getInstance().getConfig().getString("misc_message.player_not_specified");
-                player_not_specified = ChatColor.translateAlternateColorCodes('&', player_not_specified);
-                sender.sendMessage(prefix + player_not_specified);
             }
 
         }
