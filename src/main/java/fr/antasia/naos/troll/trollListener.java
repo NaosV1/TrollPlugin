@@ -55,7 +55,7 @@ public class trollListener implements Listener {
     }
 
     @EventHandler
-    public void onDamage(EntityDamageEvent event) {;
+    public void onDamage(EntityDamageEvent event) {
         if (Main.troll_instantdead.contains(event.getEntity())) {
             Player player = (Player) event.getEntity();
             event.setCancelled(true);
