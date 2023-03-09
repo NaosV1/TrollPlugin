@@ -24,188 +24,190 @@ public class trollCommand implements CommandExecutor {
         if (player == null) return;
         player.sendMessage(prefix + " §cTrolls :");
         player.sendMessage(" §c-> §r/antatroll §6[§bPlayer§6] §6[§bTroll§6] §6<§bOption§6>");
-        if (player.hasPermission("antatroll.reload")) player.sendMessage("§7/antatroll reload §6- §7Reload the config");
+        player.sendMessage("§7/antatroll reload §6- §7Reload the config");
         player.sendMessage("§7 [] = Not Optional\n <> = Optional");
-        if (player.hasPermission("antatroll.replaceblock") || player.hasPermission("antatroll.*")) player.sendMessage("- §b[ReplaceBlock] §r: " + cData.ReplaceBlock);
-        if (player.hasPermission("antatroll.noplace") || player.hasPermission("antatroll.*")) player.sendMessage("- §b[NoPlace] §r: " + cData.NoPlace);
-        if (player.hasPermission("antatroll.nobreak") || player.hasPermission("antatroll.*")) player.sendMessage("- §b[NoBreak] §r: " + cData.NoBreak);
-        if (player.hasPermission("antatroll.randomchat") || player.hasPermission("antatroll.*")) player.sendMessage("- §b[RandomChat] §r: " + cData.RandomChat);
-        if (player.hasPermission("antatroll.forcechat") || player.hasPermission("antatroll.*")) player.sendMessage("- §b[ForceChat] §e<" + cData.message_option + "> §r: " + cData.ForceChat);
-        if (player.hasPermission("antatroll.instantdeath") || player.hasPermission("antatroll.*")) player.sendMessage("- §b[InstantDeath] §r: " + cData.InstantDeath);
-        if (player.hasPermission("antatroll.spam") || player.hasPermission("antatroll.*")) player.sendMessage("- §b[Spam] §e<" + cData.time_option + "> §r: " + cData.Spam);
-        if (player.hasPermission("antatroll.rocket") || player.hasPermission("antatroll.*")) player.sendMessage("- §b[Rocket] §e<" + cData.power_option + "> §r: " + cData.Rocket);
-        if (player.hasPermission("antatroll.turn") || player.hasPermission("antatroll.*")) player.sendMessage("- §b[Turn] §e<" + cData.degree_option + "> §r: " + cData.Turn);
-        if (player.hasPermission("antatroll.explode") || player.hasPermission("antatroll.*")) player.sendMessage("- §b[Explode] §r: " + cData.Explode);
-        if (player.hasPermission("antatroll.burn") || player.hasPermission("antatroll.*")) player.sendMessage("- §b[Burn] §e<" + cData.time_option + "> §r: " + cData.Burn);
-        if (player.hasPermission("antatroll.zeus") || player.hasPermission("antatroll.*")) player.sendMessage("- §b[Zeus] §r: " + cData.Zeus);
-        if (player.hasPermission("antatroll.lavablock") || player.hasPermission("antatroll.*")) player.sendMessage("- §b[LavaBlock] §r: " + cData.LavaBlock);
-        if (player.hasPermission("antatroll.mob") || player.hasPermission("antatroll.*")) player.sendMessage("- §b[Mob] §e<" + cData.creature_option + "> §r: " + cData.Mob);
+        player.sendMessage("- §b[ReplaceBlock] §r: " + cData.ReplaceBlock);
+        player.sendMessage("- §b[NoPlace] §r: " + cData.NoPlace);
+        player.sendMessage("- §b[NoBreak] §r: " + cData.NoBreak);
+        player.sendMessage("- §b[RandomChat] §r: " + cData.RandomChat);
+        player.sendMessage("- §b[ForceChat] §e<" + cData.message_option + "> §r: " + cData.ForceChat);
+        player.sendMessage("- §b[InstantDeath] §r: " + cData.InstantDeath);
+        player.sendMessage("- §b[Spam] §e<" + cData.time_option + "> §r: " + cData.Spam);
+        player.sendMessage("- §b[Rocket] §e<" + cData.power_option + "> §r: " + cData.Rocket);
+        player.sendMessage("- §b[Turn] §e<" + cData.degree_option + "> §r: " + cData.Turn);
+        player.sendMessage("- §b[Explode] §r: " + cData.Explode);
+        player.sendMessage("- §b[Burn] §e<" + cData.time_option + "> §r: " + cData.Burn);
+        player.sendMessage("- §b[Zeus] §r: " + cData.Zeus);
+        player.sendMessage("- §b[LavaBlock] §r: " + cData.LavaBlock);
+        player.sendMessage("- §b[Mob] §e<" + cData.creature_option + "> §r: " + cData.Mob);
     }
+
+    private void reload(Player player) {
+        Main.getInstance().reloadConfig();
+        String config_reloaded = Main.getInstance().getConfig().getString("config_reloaded");
+        config_reloaded = ChatColor.translateAlternateColorCodes('&', config_reloaded);
+        player.sendMessage(prefix + config_reloaded);
+    }
+
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (command.getName().equalsIgnoreCase("troll") || command.getName().equalsIgnoreCase("antatroll")) {
             if (args.length == 0) help(sender instanceof Player ? (Player) sender : null);
-            else {
-                if (args[0].equalsIgnoreCase("reload")) {
-                    if (sender.hasPermission("antatroll.reload")) {
-                        Main.getInstance().reloadConfig();
-                        String config_reloaded = Main.getInstance().getConfig().getString("config_reloaded");
-                        config_reloaded = ChatColor.translateAlternateColorCodes('&', config_reloaded);
-                        sender.sendMessage(prefix + config_reloaded);
-                    } else {
-                        String no_permission = Main.getInstance().getConfig().getString("misc_message.no_permission");
-                        no_permission = ChatColor.translateAlternateColorCodes('&', no_permission);
-                        sender.sendMessage(prefix + no_permission);
-                    }
+            if (args[0].equalsIgnoreCase("reload")) {
+                if (sender.hasPermission("antatroll.reload")) {
+                    reload((Player) sender);
                 } else {
-                    Player player = Bukkit.getPlayer(args[0]);
-                    if (player != null) {
-                        if (args.length >= 2) {
-                            String message_enable = Main.getInstance().getConfig().getString("misc_message.troll_enabled");
-                            message_enable = ChatColor.translateAlternateColorCodes('&', message_enable);
-                            message_enable = message_enable.replace("%player%", player.getName());
-                            message_enable = message_enable.replace("%troll%", args[1]);
+                    String no_permission = Main.getInstance().getConfig().getString("misc_message.no_permission");
+                    no_permission = ChatColor.translateAlternateColorCodes('&', no_permission);
+                    sender.sendMessage(prefix + no_permission);
+                }
+            } else {
+                Player player = Bukkit.getPlayer(args[0]);
+                if (player != null) {
+                    if (args.length >= 2) {
+                        String message_enable = Main.getInstance().getConfig().getString("misc_message.troll_enabled");
+                        message_enable = ChatColor.translateAlternateColorCodes('&', message_enable);
+                        message_enable = message_enable.replace("%player%", player.getName());
+                        message_enable = message_enable.replace("%troll%", args[1]);
+                        String message_disable = Main.getInstance().getConfig().getString("misc_message.troll_disabled");
+                        message_disable = ChatColor.translateAlternateColorCodes('&', message_disable);
+                        message_disable = message_disable.replace("%player%", player.getName());
+                        message_disable = message_disable.replace("%troll%", args[1]);
 
-                            String message_disable = Main.getInstance().getConfig().getString("misc_message.troll_disabled");
-                            message_disable = ChatColor.translateAlternateColorCodes('&', message_disable);
-                            message_disable = message_disable.replace("%player%", player.getName());
-                            message_disable = message_disable.replace("%troll%", args[1]);
+                        if (args[1].equalsIgnoreCase("replaceblock")) {
+                            if (sender.hasPermission("antatroll.replaceblock") || sender.hasPermission("antatroll.*") || sender.isOp()) {
+                                if (Main.troll_replaceblock.contains(player)) {
+                                    Main.troll_replaceblock.remove(player);
 
-                             if (args[1].equalsIgnoreCase("replaceblock")) {
-                                 if (sender.hasPermission("antatroll.replaceblock") || sender.hasPermission("antatroll.*") || sender.isOp()) {
-                                     if (Main.troll_replaceblock.contains(player)) {
-                                         Main.troll_replaceblock.remove(player);
+                                    sender.sendMessage(prefix + message_disable);
+                                } else {
+                                    Main.troll_replaceblock.add(player);
+                                    sender.sendMessage(prefix + message_enable);
+                                }
+                            }
+                        } else if (args[1].equalsIgnoreCase("noplace")) {
+                            if (sender.hasPermission("antatroll.noplace") || sender.hasPermission("antatroll.*") || sender.isOp()) {
+                                if (Main.troll_noplace.contains(player)) {
+                                    Main.troll_noplace.remove(player);
+                                    sender.sendMessage(prefix + message_disable);
+                                } else {
+                                    Main.troll_noplace.add(player);
+                                    sender.sendMessage(prefix + message_enable);
+                                }
+                            }
 
-                                         sender.sendMessage(prefix + message_disable);
-                                     } else {
-                                         Main.troll_replaceblock.add(player);
-                                         sender.sendMessage(prefix + message_enable);
-                                     }
-                                 }
+                        } else if (args[1].equalsIgnoreCase("nobreak")) {
+                            if (sender.hasPermission("antatroll.nobreak") || sender.hasPermission("antatroll.*") || sender.isOp()) {
+                                if (Main.troll_nobreak.contains(player)) {
+                                    Main.troll_nobreak.remove(player);
+                                    sender.sendMessage(prefix + message_disable);
+                                } else {
+                                    Main.troll_nobreak.add(player);
+                                    sender.sendMessage(prefix + message_enable);
+                                }
+                            }
 
-                            } else if (args[1].equalsIgnoreCase("noplace")) {
-                                 if (sender.hasPermission("antatroll.noplace") || sender.hasPermission("antatroll.*") || sender.isOp()) {
-                                     if (Main.troll_noplace.contains(player)) {
-                                         Main.troll_noplace.remove(player);
-                                         sender.sendMessage(prefix + message_disable);
-                                     } else {
-                                         Main.troll_noplace.add(player);
-                                         sender.sendMessage(prefix + message_enable);
-                                     }
-                                 }
+                        } else if (args[1].equalsIgnoreCase("randomchat")) {
+                            if (sender.hasPermission("antatroll.randomchat") || sender.hasPermission("antatroll.*") || sender.isOp()) {
+                                if (Main.troll_randomchat.contains(player)) {
+                                    Main.troll_randomchat.remove(player);
+                                    sender.sendMessage(prefix + message_disable);
+                                } else {
+                                    Main.troll_randomchat.add(player);
+                                    sender.sendMessage(prefix + message_enable);
+                                }
+                            }
+                        } else if (args[1].equalsIgnoreCase("forcechat")) {
+                            if (sender.hasPermission("antatroll.forcechat") || sender.hasPermission("antatroll.*") || sender.isOp()) {
+                                if (args.length >= 3) {
+                                    String message = "";
+                                    for (int i = 2; i < args.length; i++) {
+                                        message = message + args[i] + " ";
+                                    }
+                                    int isrdmchat = 0;
+                                    if (Main.troll_randomchat.contains(player)) {
+                                        isrdmchat = 1;
+                                        Main.troll_randomchat.remove(player);
+                                    }
+                                    player.chat(message);
+                                    if (isrdmchat == 1) {
+                                        Main.troll_randomchat.add(player);
+                                    }
+                                    String message_forcechat = Main.getInstance().getConfig().getString("misc_message.forcechat.sent");
+                                    message_forcechat = ChatColor.translateAlternateColorCodes('&', message_forcechat);
+                                    message_forcechat = message_forcechat.replace("%player%", player.getName());
+                                    message_forcechat = message_forcechat.replace("%message%", message);
+                                    sender.sendMessage(prefix + message_forcechat);
+                                } else {
+                                    String message_not_specified = Main.getInstance().getConfig().getString("misc_message.forcechat.not_specified");
+                                    message_not_specified = ChatColor.translateAlternateColorCodes('&', message_not_specified);
+                                    sender.sendMessage(prefix + message_not_specified);
+                                }
+                            }
+                        } else if (args[1].equalsIgnoreCase("instantdeath")) {
+                            if (sender.hasPermission("antatroll.instantdeath") || sender.hasPermission("antatroll.*") || sender.isOp()) {
+                                if (Main.troll_instantdead.contains(player)) {
+                                    Main.troll_instantdead.remove(player);
+                                    sender.sendMessage(prefix + message_disable);
+                                } else {
+                                    Main.troll_instantdead.add(player);
+                                    String player_instadeath = Main.getInstance().getConfig().getString("misc_message.player_instadeath");
+                                    player_instadeath = ChatColor.translateAlternateColorCodes('&', player_instadeath);
+                                    player_instadeath = player_instadeath.replace("%player%", player.getName());
+                                    sender.sendMessage(prefix + player_instadeath);
+                                }
+                            }
+                        } else if (args[1].equalsIgnoreCase("rocket")) {
+                            if (sender.hasPermission("antatroll.rocket") || sender.hasPermission("antatroll.*") || sender.isOp()) {
+                                if (args.length >= 3) {
+                                    if (isInt(args[2])) {
+                                        int power = Integer.parseInt(args[2]);
+                                        if (!(power > 20)) {
+                                            player.setVelocity(player.getVelocity().setY(power));
+                                            String player_launched_in_the_sky = Main.getInstance().getConfig().getString("misc_message.player_launched_in_the_sky");
+                                            player_launched_in_the_sky = ChatColor.translateAlternateColorCodes('&', player_launched_in_the_sky);
+                                            player_launched_in_the_sky = player_launched_in_the_sky.replace("%player%", player.getName());
+                                            player_launched_in_the_sky = player_launched_in_the_sky.replace("%power%", args[2]);
+                                            sender.sendMessage(prefix + player_launched_in_the_sky);
+                                        } else {
+                                            int max = 20;
+                                            int min = 0;
+                                            String message = Main.getInstance().getConfig().getString("misc_message.int_invalid");
+                                            message = ChatColor.translateAlternateColorCodes('&', message);
+                                            message = message.replace("%min%", String.valueOf(min));
+                                            message = message.replace("%max%", String.valueOf(max));
+                                            sender.sendMessage(prefix + message);
+                                        }
+                                    }
+                                } else {
+                                    int max = 20;
+                                    int min = 1;
+                                    String message = Main.getInstance().getConfig().getString("misc_message.int_invalid");
+                                    message = ChatColor.translateAlternateColorCodes('&', message);
+                                    message = message.replace("%min%", String.valueOf(min));
+                                    message = message.replace("%max%", String.valueOf(max));
+                                    sender.sendMessage(prefix + message);
+                                }
+                            }
+                        } else if (args[1].equalsIgnoreCase("spam")) {
+                            if (sender.hasPermission("antatroll.spam") || sender.hasPermission("antatroll.*") || sender.isOp()) {
 
-                            } else if (args[1].equalsIgnoreCase("nobreak")) {
-                                 if (sender.hasPermission("antatroll.nobreak") || sender.hasPermission("antatroll.*") || sender.isOp()) {
-                                     if (Main.troll_nobreak.contains(player)) {
-                                         Main.troll_nobreak.remove(player);
-                                         sender.sendMessage(prefix + message_disable);
-                                     } else {
-                                         Main.troll_nobreak.add(player);
-                                         sender.sendMessage(prefix + message_enable);
-                                     }
-                                 }
+                                if (args.length >= 3) {
 
-                            } else if (args[1].equalsIgnoreCase("randomchat")) {
-                                 if (sender.hasPermission("antatroll.randomchat") || sender.hasPermission("antatroll.*") || sender.isOp()) {
-                                     if (Main.troll_randomchat.contains(player)) {
-                                         Main.troll_randomchat.remove(player);
-                                         sender.sendMessage(prefix + message_disable);
-                                     } else {
-                                         Main.troll_randomchat.add(player);
-                                         sender.sendMessage(prefix + message_enable);
-                                     }
-                                 }
-                            } else if (args[1].equalsIgnoreCase("forcechat")) {
-                                 if (sender.hasPermission("antatroll.forcechat") || sender.hasPermission("antatroll.*") || sender.isOp()) {
-                                     if (args.length >= 3) {
-                                         String message = "";
-                                         for (int i = 2; i < args.length; i++) {
-                                             message = message + args[i] + " ";
-                                         }
-                                         int isrdmchat = 0;
-                                         if (Main.troll_randomchat.contains(player)) {
-                                             isrdmchat = 1;
-                                             Main.troll_randomchat.remove(player);
-                                         }
-                                         player.chat(message);
-                                         if (isrdmchat == 1) {
-                                             Main.troll_randomchat.add(player);
-                                         }
-                                         String message_forcechat = Main.getInstance().getConfig().getString("misc_message.forcechat.sent");
-                                         message_forcechat = ChatColor.translateAlternateColorCodes('&', message_forcechat);
-                                         message_forcechat = message_forcechat.replace("%player%", player.getName());
-                                         message_forcechat = message_forcechat.replace("%message%", message);
-                                         sender.sendMessage(prefix + message_forcechat);
-                                     } else {
-                                         String message_not_specified = Main.getInstance().getConfig().getString("misc_message.forcechat.not_specified");
-                                         message_not_specified = ChatColor.translateAlternateColorCodes('&', message_not_specified);
-                                         sender.sendMessage(prefix + message_not_specified);
-                                     }
-                                 }
-                            } else if (args[1].equalsIgnoreCase("instantdeath")) {
-                                 if (sender.hasPermission("antatroll.instantdeath") || sender.hasPermission("antatroll.*") || sender.isOp()) {
-                                     if (Main.troll_instantdead.contains(player)) {
-                                         Main.troll_instantdead.remove(player);
-                                         sender.sendMessage(prefix + message_disable);
-                                     } else {
-                                         Main.troll_instantdead.add(player);
-                                         String player_instadeath = Main.getInstance().getConfig().getString("misc_message.player_instadeath");
-                                         player_instadeath = ChatColor.translateAlternateColorCodes('&', player_instadeath);
-                                         player_instadeath = player_instadeath.replace("%player%", player.getName());
-                                         sender.sendMessage(prefix + player_instadeath);
-                                     }
-                                 }
-                            } else if (args[1].equalsIgnoreCase("rocket")) {
-                                 if (sender.hasPermission("antatroll.rocket") || sender.hasPermission("antatroll.*") || sender.isOp()) {
-                                     if (args.length >= 3) {
-                                         if (isInt(args[2])) {
-                                             int power = Integer.parseInt(args[2]);
-                                             if (!(power > 20)) {
-                                                player.setVelocity(player.getVelocity().setY(power));
-                                                String player_launched_in_the_sky = Main.getInstance().getConfig().getString("misc_message.player_launched_in_the_sky");
-                                                player_launched_in_the_sky = ChatColor.translateAlternateColorCodes('&', player_launched_in_the_sky);
-                                                player_launched_in_the_sky = player_launched_in_the_sky.replace("%player%", player.getName());
-                                                player_launched_in_the_sky = player_launched_in_the_sky.replace("%power%", args[2]);
-                                                sender.sendMessage(prefix + player_launched_in_the_sky);
-                                             } else {
-                                                 int max = 20;
-                                                 int min = 0;
-                                                 String message = Main.getInstance().getConfig().getString("misc_message.int_invalid");
-                                                 message = ChatColor.translateAlternateColorCodes('&', message);
-                                                 message = message.replace("%min%", String.valueOf(min));
-                                                 message = message.replace("%max%", String.valueOf(max));
-                                                 sender.sendMessage(prefix + message);
-                                             }
-                                         }
-                                     } else {
-                                         int max = 20;
-                                         int min = 1;
-                                         String message = Main.getInstance().getConfig().getString("misc_message.int_invalid");
-                                         message = ChatColor.translateAlternateColorCodes('&', message);
-                                         message = message.replace("%min%", String.valueOf(min));
-                                         message = message.replace("%max%", String.valueOf(max));
-                                         sender.sendMessage(prefix + message);
-                                     }
-                                 }
-                            } else if (args[1].equalsIgnoreCase("spam")) {
-                                 if (sender.hasPermission("antatroll.spam") || sender.hasPermission("antatroll.*") || sender.isOp()) {
-
-                                     if (args.length >= 3) {
-
-                                         String message = args[2].substring(0, args[2].length() - 1);
-                                         if (isInt(message)) {
-                                             if (args[2].contains("s")) {
-                                                 int time = Integer.parseInt(message);
-                                                 if (time > 0) {
-                                                     player.addPotionEffect(new PotionEffect(PotionEffectType.CONFUSION, 20 * time, 5));
-                                                     player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 20 * time, 5));
-                                                     String timestamp = Main.getInstance().getConfig().getString("time.seconds");
-                                                     String player_spam_effect = Main.getInstance().getConfig().getString("misc_message.player_spam_effect");
-                                                     player_spam_effect = ChatColor.translateAlternateColorCodes('&', player_spam_effect);
-                                                     player_spam_effect = player_spam_effect.replace("%player%", player.getName());
-                                                     player_spam_effect = player_spam_effect.replace("%time%", time + " " + timestamp);
-                                                     sender.sendMessage(prefix + player_spam_effect);
-                                                     Bukkit.getScheduler().runTaskAsynchronously(Main.getInstance(), new Runnable() {
-                                                         @Override
+                                    String message = args[2].substring(0, args[2].length() - 1);
+                                    if (isInt(message)) {
+                                        if (args[2].contains("s")) {
+                                            int time = Integer.parseInt(message);
+                                            if (time > 0) {
+                                                player.addPotionEffect(new PotionEffect(PotionEffectType.CONFUSION, 20 * time, 5));
+                                                player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 20 * time, 5));
+                                                String timestamp = Main.getInstance().getConfig().getString("time.seconds");
+                                                String player_spam_effect = Main.getInstance().getConfig().getString("misc_message.player_spam_effect");
+                                                player_spam_effect = ChatColor.translateAlternateColorCodes('&', player_spam_effect);
+                                                player_spam_effect = player_spam_effect.replace("%player%", player.getName());
+                                                player_spam_effect = player_spam_effect.replace("%time%", time + " " + timestamp);
+                                                sender.sendMessage(prefix + player_spam_effect);
+                                                Bukkit.getScheduler().runTaskAsynchronously(Main.getInstance(), new Runnable() {
+                                                    @Override
                                                          public void run() {
                                                              for (int i = 0; i < time; i++) {
                                                                  for (int j = 0; j < 50; j++) {
@@ -603,8 +605,6 @@ public class trollCommand implements CommandExecutor {
                     }
                 }
             }
-
-        }
         return false;
     }
 
