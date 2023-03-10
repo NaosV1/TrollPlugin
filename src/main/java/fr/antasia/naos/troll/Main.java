@@ -50,9 +50,8 @@ public final class Main extends JavaPlugin {
 
     private void updateCheck(){
         resourceId = 108424;
-        // récupère le contenu de cette page : https://api.spigotmc.org/legacy/update.php?resource=108424
         try {
-            URL url = new URL("http://www.example.com");
+            URL url = new URL("https://api.spigotmc.org/legacy/update.php?resource=108424");
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod("GET");
             con.setConnectTimeout(5000);
@@ -67,10 +66,10 @@ public final class Main extends JavaPlugin {
             }
             in.close();
             if (!(content.toString().equals(getDescription().getVersion()))) {
-                System.out.println("An update is available for AntaTroll ! Download it here : https://www.spigotmc.org/resources/antatroll.108424/");
+                Bukkit.getConsoleSender().sendMessage("An update is available for AntaTroll ! Download it here : https://www.spigotmc.org/resources/antatroll.108424/");
             }
         } catch (Exception e) {
-            System.out.println("Error checking update for AntaTroll : " + e.getMessage());
+            Bukkit.getConsoleSender().sendMessage("Error checking update for AntaTroll : " + e.getMessage());
         }
 
     }
