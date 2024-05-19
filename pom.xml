@@ -6,7 +6,7 @@
 
     <groupId>fr.antasia.naos</groupId>
     <artifactId>Troll</artifactId>
-    <version>1.0</version>
+    <version>1.3</version>
     <packaging>jar</packaging>
 
     <name>Troll</name>

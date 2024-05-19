@@ -51,7 +51,10 @@ public class trollCommand implements CommandExecutor {
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (command.getName().equalsIgnoreCase("troll") || command.getName().equalsIgnoreCase("antatroll")) {
-            if (args.length == 0) help(sender instanceof Player ? (Player) sender : null);
+            if (args.length == 0) {
+                help((Player) sender);
+                return false;
+            }
             if (args[0].equalsIgnoreCase("reload")) {
                 if (sender.hasPermission("antatroll.reload")) {
                     reload((Player) sender);
